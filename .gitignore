@@ -1,0 +1,4 @@
+script/commit.sh
+.env.*
+.git/
+.idea/
