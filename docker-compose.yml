@@ -17,6 +17,7 @@ services:
       args:
         username: "moodleapp"
         unique_id: 9135
+#    image: "tirtahakimpambudhi/docker.moodleapp:latest"
     healthcheck:
       test: curl --fail http://localhost:8080/ || exit 1
       interval: 60s
