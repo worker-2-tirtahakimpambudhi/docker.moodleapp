@@ -57,4 +57,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+
+      - name: Deploy to Sliplane
+        run: |
+          curl "${{ secrets.SLIPLANE_HOOKS }}"
