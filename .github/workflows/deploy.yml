@@ -37,7 +37,6 @@ jobs:
         with:
           command: quickview,cves
           image: ${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{secrets.IMAGE_TAG}}
-          github-token: ${{ secrets.TOKEN }}
 
       - name: Upload SARIF result
         id: upload-sarif
