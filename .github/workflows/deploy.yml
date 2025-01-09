@@ -36,7 +36,7 @@ jobs:
         uses: docker/scout-action@v1.16.1
         with:
           command: quickview,cves
-          image: ${{ env.REGISTRY }}/${{ github.event.repository.name }}:${{secrets.IMAGE_TAG}}
+          image: ${{ env.REGISTRY }}/${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{secrets.IMAGE_TAG}}
 
       - name: Upload SARIF result
         id: upload-sarif
