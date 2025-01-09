@@ -41,6 +41,8 @@ jobs:
 
   deploy-job:
     name: "Deploy Moodle App"
+    needs:
+      - release
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
