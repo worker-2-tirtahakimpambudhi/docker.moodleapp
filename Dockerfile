@@ -11,7 +11,8 @@ RUN adduser --disabled-password \
             --uid "${unique_id}" \
             "${username}"
 
-ENV BITNAMI_DEBUG=true \
+ENV PORT=8080 \
+    BITNAMI_DEBUG=true \
     ALLOW_EMPTY_PASSWORD=no \
     MOODLE_DATABASE_HOST=mariadb \
     MOODLE_DATABASE_PORT_NUMBER=3306 \
@@ -33,7 +34,7 @@ RUN chown -R ${username}:${username} /bitnami/moodle \
 VOLUME /bitnami/moodle
 VOLUME /bitnami/moodledata
 
-EXPOSE 8080 8443
+EXPOSE ${PORT} 8443
 USER root
 
 CMD [ "/opt/bitnami/scripts/moodle/run.sh" ]
