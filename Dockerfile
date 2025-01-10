@@ -25,7 +25,7 @@ ENV PORT=8080 \
     MOODLE_PASSWORD="admin_password_moodle" \
     MOODLE_SKIP_BOOTSTRAP=no \
     MOODLE_DATABASE_TYPE=mariadb \
-    MOODLE_HOST=${HOST}
+    MOODLE_HOST="0.0.0.0"
 
 USER root
 
