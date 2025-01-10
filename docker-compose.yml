@@ -1,0 +1,39 @@
+services:
+  mariadb:
+    image: bitnami/mariadb:10.6
+    networks:
+      - moodle_networks
+    ports:
+      - "3306"
+    env_file:
+      - ./.env.mariadb
+    volumes:
+      - "mariadb_data:/bitnami/mariadb"
+  moodle:
+    container_name: moodle-app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        username: "moodleapp"
+        unique_id: 9135
+    env_file:
+      - ./.env.moodle
+    networks:
+      - moodle_networks
+    volumes:
+      - "moodle_data:/bitnami/moodle"
+      - "moodledata_data:/bitnami/moodledata"
+    depends_on:
+      - mariadb
+    ports:
+      - "8085:8080"
+      - "8443:8443"
+
+volumes:
+  mariadb_data:
+  moodle_data:
+  moodledata_data:
+
+networks:
+  moodle_networks:
