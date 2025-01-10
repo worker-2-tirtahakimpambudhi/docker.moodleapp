@@ -32,6 +32,18 @@ jobs:
           --build-arg username=${{secrets.APP_USER}} \
           --build-arg unique_id=${{secrets.APP_ID}} .
 
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6.11.0
+        with:
+          context: .
+          push: true
+          build-args: |
+            username=${{secrets.APP_USER}}
+            unique_id=${{secrets.APP_ID}}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{secrets.IMAGE_TAG}}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}
+
       - name: "Docker Scout Quickview and CVEs"
         uses: docker/scout-action@v1.16.1
         with:
@@ -62,4 +74,4 @@ jobs:
 
       - name: Deploy to Sliplane
         run: |
-          curl "${{ secrets.SLIPLANE_HOOKS }}"
+          curl "${{ secrets.SLIPLANE_HOOKS }}?tag=${{ github.sha }}"
