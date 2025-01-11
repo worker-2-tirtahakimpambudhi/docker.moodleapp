@@ -12,6 +12,7 @@ RUN adduser --disabled-password \
             "${username}"
 
 ENV PORT=8080 \
+    HOST="localhost" \
     BITNAMI_DEBUG=true \
     ALLOW_EMPTY_PASSWORD=no \
     MOODLE_DATABASE_HOST=mariadb \
@@ -24,7 +25,8 @@ ENV PORT=8080 \
     MOODLE_USERNAME="admin_user_moodle" \
     MOODLE_PASSWORD="admin_password_moodle" \
     MOODLE_SKIP_BOOTSTRAP=no \
-    MOODLE_DATABASE_TYPE=mariadb
+    MOODLE_DATABASE_TYPE=mariadb \
+    MOODLE_HOST=${HOST}
 
 USER root
 
