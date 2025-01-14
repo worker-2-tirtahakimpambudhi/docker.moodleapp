@@ -1,4 +1,5 @@
 script/commit.sh
-.env.*
+.env.mariadb
+.env.moodle
 .git/
 .idea/
